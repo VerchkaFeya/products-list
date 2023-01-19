@@ -1,0 +1,24 @@
+.product {
+  min-height: 74px;
+  color: $text-dark;
+  @include font(14px, 13px, 500);
+  border-bottom: 1px solid $border-color;
+  width: 100%;
+  @include flex(space-between, center);
+
+  &__image {
+    width: 60px;
+    height: 40px;
+    object-fit: contain;
+  }
+
+  &__name {
+    @include font(16px, 16px, 500);
+  }
+
+  &__category {
+    @include font(13px, 17px, 400);
+    color: $text-light;
+    margin: 7px 0 0 0;
+  }
+}

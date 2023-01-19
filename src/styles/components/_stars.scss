@@ -1,0 +1,4 @@
+.stars {
+  @include flex(center, center);
+  gap: 12px;
+}

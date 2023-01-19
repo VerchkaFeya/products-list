@@ -1,5 +1,27 @@
+import { ProductCard } from 'components';
+import { DATA } from 'products-data';
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 export const CardPage = () => {
-  return <p>Card page</p>;
+  const location = decodeURI(useLocation().pathname).slice(6);
+
+  console.log(location);
+
+  const currentProductIndex = DATA.findIndex(
+    (product) => product.name.trim().replace('/', '-') === location,
+  );
+  console.log(currentProductIndex);
+
+  return (
+    <div className="card-page">
+      <div className="wrapper">
+        <div className="card-page__go-back">
+          <Link to="/">Назад</Link>
+        </div>
+        <ProductCard product={DATA[currentProductIndex]} />
+      </div>
+    </div>
+  );
 };

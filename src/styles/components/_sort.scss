@@ -1,0 +1,18 @@
+.sort {
+  @include font(16px, 16px, 500);
+  color: $text-dark;
+  @include flex(space-between, center);
+
+  &__item {
+    margin-left: 30px;
+    color: $text-accent;
+
+    &:after {
+      display: inline-block;
+      content: '';
+      width: 10px;
+      height: 10px;
+      background-color: red;
+    }
+  }
+}

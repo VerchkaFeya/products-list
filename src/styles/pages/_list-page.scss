@@ -1,0 +1,12 @@
+.list-page {
+  &__title {
+    @include font(22px, 23px, 600);
+    color: $text-darkest;
+    margin: 136px 0 0 0;
+  }
+
+  &__controls {
+    margin: 24px 0 16px 0;
+    @include flex(space-between, center);
+  }
+}

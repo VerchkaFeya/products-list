@@ -1,5 +1,5 @@
 html {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
   height: 100%;
 }
@@ -12,13 +12,8 @@ body {
   height: 100%;
 }
 
-// .App {
-//   @include flex(flex-start, center);
-//   flex-direction: column;
-//   height: 100%;
-
-//   main {
-//     width: 100%;
-//     flex: 1 1 auto;
-//   }
-// }
+.wrapper {
+  max-width: $wrapper-width;
+  padding: $wrapper-side-paddings;
+  margin: 0 auto;
+}

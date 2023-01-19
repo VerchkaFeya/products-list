@@ -1,0 +1,36 @@
+@mixin font($size, $height, $weight) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+}
+
+@mixin flex($justify, $align, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// @mixin media-big-desktop {
+//   @media (max-width: $desktop-big-width) {
+//     @content;
+//   }
+// }
+
+// @mixin media-small-desktop {
+//   @media (max-width: $desktop-small-width) {
+//     @content;
+//   }
+// }
+
+// @mixin media-tablet {
+//   @media (max-width: $tablet-width) {
+//     @content;
+//   }
+// }
+
+// @mixin media-mobile {
+//   @media (max-width: $mobile-width) {
+//     @content;
+//   }
+// }
