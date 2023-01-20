@@ -4,15 +4,43 @@
   @include flex(space-between, center);
 
   &__item {
-    margin-left: 30px;
+    margin-left: 18px;
     color: $text-accent;
+    padding: 4px 6px;
+    border-radius: 3px;
+    cursor: pointer;
 
-    &:after {
-      display: inline-block;
-      content: '';
-      width: 10px;
-      height: 10px;
-      background-color: red;
+    &:hover {
+      background-color: $colored-bg;
+    }
+
+    &_active {
+      color: $text-darkest;
+
+      &.asc {
+        &::after {
+          display: inline-block;
+          content: '';
+          width: 17px;
+          height: 14px;
+          margin: 0 0 0 2px;
+          background-image: url(../../assets/svg/sort-asc.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+      &.desc {
+        &::after {
+          display: inline-block;
+          content: '';
+          width: 17px;
+          height: 14px;
+          margin: 0 0 0 2px;
+          background-image: url(../../assets/svg/sort-desc.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
     }
   }
 }
