@@ -1,4 +1,4 @@
-import { ProductsList, Search, Sort } from 'components';
+import { Pagination, ProductsList, Search, Sort } from 'components';
 import React from 'react';
 
 export const ListPage = () => {
@@ -11,7 +11,9 @@ export const ListPage = () => {
           <Search />
         </div>
       </div>
-      {/* <div className="pagination"> 1 - 2 - 3 - 4 - 5</div> */}
+      <div className="list-page__pagination">
+        <Pagination />
+      </div>
       <div className="products-list">
         <ProductsList />
       </div>

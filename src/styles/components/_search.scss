@@ -10,10 +10,15 @@
     font-family: inherit;
     color: $text-dark;
     position: relative;
+    transition: 0.3s;
 
     background-image: url('./../../assets/svg/search-icon.svg');
     background-repeat: no-repeat;
     background-position: 14px 9px;
+
+    &:focus {
+      border-color: $text-light;
+    }
 
     &::placeholder {
       color: #b6c2d2;

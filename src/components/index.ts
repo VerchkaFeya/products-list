@@ -3,5 +3,6 @@ import { Product } from './Product';
 import { Sort } from './Sort';
 import { ProductCard } from './ProductCard';
 import { Search } from './Search';
+import { Pagination } from './Pagination';
 
-export { ProductsList, Product, Sort, ProductCard, Search };
+export { ProductsList, Product, Sort, ProductCard, Search, Pagination };

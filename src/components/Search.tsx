@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 export const Search = () => {
+  // TODO get searchValue from reduxX
+
   const [searchValue, setSearchValue] = useState('');
 
   return (
