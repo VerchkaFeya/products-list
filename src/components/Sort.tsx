@@ -1,23 +1,44 @@
 import React from 'react';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAscSort, setSortParam } from 'redux/slices/filtersSlice';
 
 export const Sort = () => {
-  const [activeSortParam, setActiveSortParam] = useState(0);
-  const [isAscSort, setAscSort] = useState(true);
+  const isAscSort = useSelector((state: any) => state.filters.ascSort);
+  const sortParam = useSelector((state: any) => state.filters.sortParam);
+  const dispatch = useDispatch();
 
-  const sortParams = ['по названию', 'по просмотрам', 'по дате начала', 'по дате окончания'];
+  const sortParams = [
+    {
+      name: 'по названию',
+      sortProperty: 'name',
+    },
+    {
+      name: 'по просмотрам',
+      sortProperty: 'views',
+    },
+    {
+      name: 'по дате начала',
+      sortProperty: 'start date',
+    },
+    {
+      name: 'по дате окончания',
+      sortProperty: 'end date',
+    },
+  ];
 
-  const sortParamClickHandler = (index: number) => {
-    if (index === activeSortParam) {
-      setAscSort(!isAscSort);
+  const sortParamClickHandler = (name: string) => {
+    if (name === sortParam.name) {
+      dispatch(setAscSort(!isAscSort));
+    } else {
+      dispatch(setAscSort(true));
     }
-    setActiveSortParam(index);
+    dispatch(setSortParam(sortParams.find((item) => item.name === name)));
   };
 
-  const getClassName = (index: number) => {
-    if (activeSortParam === index && isAscSort) {
+  const getClassName = (name: string) => {
+    if (sortParam.name === name && isAscSort) {
       return 'sort__item_active asc';
-    } else if (activeSortParam === index && !isAscSort) {
+    } else if (sortParam.name === name && !isAscSort) {
       return 'sort__item_active desc';
     } else {
       return '';
@@ -27,13 +48,13 @@ export const Sort = () => {
   return (
     <div className="sort">
       <span>Сортировать:</span>
-      {sortParams.map((param, index) => {
+      {sortParams.map((param) => {
         return (
           <span
-            className={`sort__item ${getClassName(index)}`}
-            key={param}
-            onClick={() => sortParamClickHandler(index)}>
-            {param}
+            className={`sort__item ${getClassName(param.name)}`}
+            key={param.sortProperty}
+            onClick={() => sortParamClickHandler(param.name)}>
+            {param.name}
           </span>
         );
       })}
