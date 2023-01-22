@@ -1,0 +1,7 @@
+.not-found-page {
+  @include flex(center, center);
+  @include font(32px, 40px, 500);
+  color: $text-light;
+  height: 100vh;
+  width: 100vw;
+}

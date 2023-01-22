@@ -1,5 +1,4 @@
-import { CardPage } from 'pages/CardPage';
-import { ListPage } from 'pages/ListPage';
+import { CardPage, ListPage, NotFoundPage } from 'pages';
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
@@ -9,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ListPage />} />
         <Route path="card/:id" element={<CardPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
