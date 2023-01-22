@@ -5,5 +5,16 @@
 
   &__go-back {
     padding: 76px 0 48px 0;
+    color: $text-dark;
+    @include font(18px, 21px, 400);
+  }
+
+  &__go-back-link {
+    padding: 3px 6px;
+    border-radius: 3px;
+    transition: 0.3s;
+    &:hover {
+      background-color: darken($color: $colored-bg, $amount: 3);
+    }
   }
 }

@@ -6,10 +6,31 @@
   width: 100%;
   @include flex(space-between, center);
 
+  @include media-small-desktop {
+    flex-wrap: wrap;
+    padding: 15px 10px;
+    .col_3,
+    .col_4,
+    .col_5 {
+      width: 70%;
+      margin-left: 30%;
+    }
+  }
+
   &__image {
     width: 60px;
     height: 40px;
     object-fit: contain;
+  }
+
+  &__link {
+    display: block;
+    &:hover {
+      color: $text-darkest;
+      .product__name {
+        text-decoration: underline;
+      }
+    }
   }
 
   &__name {

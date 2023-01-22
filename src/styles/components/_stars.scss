@@ -1,4 +1,12 @@
 .stars {
   @include flex(center, center);
   gap: 12px;
+
+  @include media-small-desktop {
+    gap: 0;
+
+    svg {
+      transform: scale(0.8);
+    }
+  }
 }

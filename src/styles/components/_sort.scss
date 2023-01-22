@@ -3,12 +3,17 @@
   color: $text-dark;
   @include flex(space-between, center);
 
+  @include media-small-desktop {
+    @include flex(center, flex-start, column);
+  }
+
   &__item {
     margin-left: 18px;
     color: $text-accent;
     padding: 4px 6px;
     border-radius: 3px;
     cursor: pointer;
+    transition: 0.3s;
 
     &:hover {
       background-color: $colored-bg;

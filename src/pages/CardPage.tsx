@@ -3,22 +3,23 @@ import { DATA } from 'products-data';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { ArrowGoBackBtn } from 'assets/svg';
 
 export const CardPage = () => {
   const location = decodeURI(useLocation().pathname).slice(6);
 
-  console.log(location);
-
   const currentProductIndex = DATA.findIndex(
     (product) => product.name.trim().replace('/', '-') === location,
   );
-  console.log(currentProductIndex);
 
   return (
     <div className="card-page">
       <div className="wrapper">
         <div className="card-page__go-back">
-          <Link to="/">Назад</Link>
+          <Link to="/" className="card-page__go-back-link">
+            <ArrowGoBackBtn />
+            <span> Назад</span>
+          </Link>
         </div>
         <ProductCard product={DATA[currentProductIndex]} />
       </div>

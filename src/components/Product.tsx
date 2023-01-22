@@ -10,10 +10,10 @@ export const Product = ({ product }: TProductProps) => {
         <img src={product.image_url} alt="photo" className="product__image" />
       </div>
       <div className="product__info col col_2">
-        <Link to={`/card/${product.name.replace('/', '-')}`}>
+        <Link className="product__link" to={`/card/${product.name.replace('/', '-')}`}>
           <h3 className="product__name">{product.name}</h3>
+          <div className="product__category">{product.category}</div>
         </Link>
-        <div className="product__category">{product.category}</div>
       </div>
       <div className="product__views col col_3">{product.views.toLocaleString()}</div>
       <div className="product__start-date col col_4">{formatDate(product.start_date)}</div>

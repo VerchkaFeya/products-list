@@ -7,9 +7,14 @@
     font-family: 'Open Sans', sans-serif;
     color: $text-dark;
     @include font(13px, 17px, 600);
-  }
 
-  &__body {
+    @include media-small-desktop {
+      .col_3,
+      .col_4,
+      .col_5 {
+        display: none;
+      }
+    }
   }
 }
 
@@ -18,27 +23,61 @@
 
   &_1 {
     width: 8.5%;
-    // background-color: yellow;
+    @include media-small-desktop {
+      width: 30%;
+    }
   }
 
   &_2 {
     width: 54%;
     text-align: left;
-    // background-color: orange;
+    @include media-small-desktop {
+      width: 70%;
+    }
   }
 
   &_3 {
     width: 12.5%;
-    // background-color: lightcoral;
+    @include media-small-desktop {
+      text-align: left;
+      margin: 15px 0 5px 0;
+      &::before {
+        content: 'Просмотры: ';
+        display: inline-block;
+        width: auto;
+        height: 10px;
+        margin: 0 10px 0 0;
+      }
+    }
   }
 
   &_4 {
     width: 12.5%;
-    // background-color: lightblue;
+    margin: 5px 0;
+    @include media-small-desktop {
+      text-align: left;
+      &::before {
+        content: 'Начало ротации: ';
+        display: inline-block;
+        width: auto;
+        height: 10px;
+        margin: 0 10px 0 0;
+      }
+    }
   }
 
   &_5 {
     width: 12.5%;
-    // background-color: lightgreen;
+    margin: 5px 0;
+    @include media-small-desktop {
+      text-align: left;
+      &::before {
+        content: 'Конец ротации: ';
+        display: inline-block;
+        width: auto;
+        height: 10px;
+        margin: 0 10px 0 0;
+      }
+    }
   }
 }

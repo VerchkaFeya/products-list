@@ -6,8 +6,8 @@ type TStarsProps = {
 };
 
 export const Stars = ({ stars }: TStarsProps) => {
-  const filledStarsAmount = [...Array(stars).keys()];
-  const outlinedStarsAmount = [...Array(5 - stars).keys()];
+  const filledStarsAmount = [...new Array(stars)];
+  const outlinedStarsAmount = [...new Array(5 - stars)];
 
   return (
     <div className="stars">

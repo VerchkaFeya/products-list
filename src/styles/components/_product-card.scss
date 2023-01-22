@@ -4,41 +4,38 @@
   &__main {
     padding: 40px 80px 77px 90px;
     position: relative;
+
+    @include media-small-desktop {
+      padding: 20px 30px 30px 20px;
+    }
   }
 
   &__discount {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 61px;
+    left: 80px;
     right: 0;
     bottom: 0;
-    width: 73px;
+    width: 100px;
     height: 36px;
-    background-color: $badge-color;
-    border-radius: 10px 2px 2px 10px;
-    padding: 3px 5px 3px 7px;
-    @include flex(center, center);
+    padding: 0 0 0 10px;
+    @include flex(flex-start, center);
     color: $text-white;
+    background-image: url(../../assets/svg/badge-arrow.svg);
+    background-repeat: no-repeat;
     @include font(22px, 27px, 600);
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 60px;
-      width: 25.5px;
-      height: 25.5px;
-      background-color: $badge-color;
-      transform: rotate(-135deg);
-      clip-path: polygon(0% 0%, 100% 100%, 0% 100%);
-      border-radius: 0 0 0 10px;
-    }
   }
 
   &__logo {
     width: 150px;
     height: 77px;
     margin: 0 0 0 auto;
+
+    @include media-small-desktop {
+      width: 100px;
+      height: 55px;
+    }
+
     img {
       width: 100%;
       height: 100%;
@@ -69,29 +66,54 @@
     color: $text-darkest;
     @include font(38px, 120%, 600);
     margin: 34px 0 0 0;
+
+    @include media-small-desktop {
+      @include font(24px, 120%, 600);
+    }
   }
 
   &__stars {
     @include flex(flex-end, center);
     margin: 52px 0 40px auto;
+
+    @include media-small-desktop {
+      @include flex(flex-start, center);
+      margin: 30px 0 30px 0;
+    }
   }
 
   &__prices {
     @include flex(space-between, flex-end);
+
+    @include media-small-desktop {
+      @include flex(space-between, flex-start, column);
+      gap: 15px;
+    }
   }
 
   &__disclaimer {
     background-color: $disclaimer-bg;
     @include flex(center, center);
     padding: 36px 0 36px 0;
+    text-align: center;
     color: $disclaimer-text;
     @include font(22px, 23px, 600);
+
+    @include media-small-desktop {
+      padding: 24px 16px;
+      @include font(16px, 18px, 600);
+    }
   }
 }
 
 .card-price {
   @include flex(center, center, column);
   gap: 15px;
+
+  @include media-small-desktop {
+    @include flex(flex-start, flex-start, column);
+    gap: 5px;
+  }
 
   &__price {
     @include flex(center, flex-start);
@@ -109,6 +131,10 @@
         top: 50%;
         transform: translateY(-50%);
         background-color: $badge-color;
+
+        @include media-small-desktop {
+          height: 2.5px;
+        }
       }
     }
 
@@ -120,25 +146,43 @@
   &__integers {
     @include font(32px, 32px, 600);
     margin: 5px 0 0 0;
+    @include media-small-desktop {
+      @include font(24px, 24px, 600);
+    }
 
     &_new {
       @include font(52px, 52px, 600);
+      @include media-small-desktop {
+        @include font(32px, 32px, 600);
+      }
     }
   }
 
   &__decimals {
     @include font(18px, 18px, 600);
     margin: 5px 0 0 0;
+    @include media-small-desktop {
+      @include font(14px, 14px, 600);
+    }
     &_new {
       @include font(30px, 30px, 600);
+      @include media-small-desktop {
+        @include font(20px, 20px, 600);
+      }
     }
   }
 
   &__symbol {
     @include font(45px, 40px, 600);
     margin: 0 0 0 3px;
+    @include media-small-desktop {
+      @include font(30px, 30px, 600);
+    }
     &_new {
       @include font(60px, 60px, 600);
+      @include media-small-desktop {
+        @include font(36px, 36px, 600);
+      }
     }
   }
 
@@ -146,5 +190,9 @@
     color: $disclaimer-text;
     text-transform: uppercase;
     @include font(18px, 18px, 600);
+
+    @include media-small-desktop {
+      @include font(14px, 14px, 600);
+    }
   }
 }
