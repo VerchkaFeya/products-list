@@ -9,4 +9,8 @@
     margin: 24px 0 16px 0;
     @include flex(space-between, center);
   }
+
+  &__search {
+    width: 320px;
+  }
 }
