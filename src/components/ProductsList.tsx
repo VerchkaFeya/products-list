@@ -18,7 +18,7 @@ export const ProductsList = () => {
       .then((res) => setProducts(res));
   }, []);
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <>
