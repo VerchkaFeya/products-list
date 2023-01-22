@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   currentPage: 1,
   productsPerPage: 5,
-  pagesAmount: 3,
+  pagesAmount: 3, // получать из
 };
 
 export const paginationSlice = createSlice({

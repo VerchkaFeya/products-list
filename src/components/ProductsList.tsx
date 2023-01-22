@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
 import { useSelector } from 'react-redux';
-import { compareEndDate, compareNames, compareStartDate, compareViews } from './utils';
+import {
+  compareEndDate,
+  compareNames,
+  compareStartDate,
+  compareViews,
+  getProductsPerPage,
+} from './utils';
 
 export const ProductsList = () => {
-  // TODO get products perPage from redux
-  // TODO get products currentPage from redux
-
   // TODO get products filterType from redux
   // TODO get products searchValue from redux
 
@@ -21,6 +24,8 @@ export const ProductsList = () => {
 
   const isAscSort = useSelector((state: any) => state.filters.ascSort);
   const sortParam = useSelector((state: any) => state.filters.sortParam);
+  const currentPage = useSelector((state: any) => state.pagination.currentPage);
+  const productsPerPage = useSelector((state: any) => state.pagination.productsPerPage);
 
   let visibleProducts: TProduct[] = [];
 
@@ -37,6 +42,10 @@ export const ProductsList = () => {
   if (!isAscSort) {
     visibleProducts.reverse();
   }
+
+  visibleProducts = getProductsPerPage(visibleProducts, productsPerPage, currentPage)[
+    currentPage - 1
+  ];
 
   return (
     <>
