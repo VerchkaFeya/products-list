@@ -39,17 +39,17 @@ export const compareNames = (a: TProduct, b: TProduct): number => {
   return 0;
 };
 
-export const compareViews = (a: TProduct, b: TProduct): number => {
+const compareViews = (a: TProduct, b: TProduct): number => {
   return a.views - b.views;
 };
 
-export const compareStartDate = (a: TProduct, b: TProduct): number => {
+const compareStartDate = (a: TProduct, b: TProduct): number => {
   const startDateA = Date.parse(a.start_date);
   const startDateB = Date.parse(b.start_date);
   return startDateA - startDateB;
 };
 
-export const compareEndDate = (a: TProduct, b: TProduct): number => {
+const compareEndDate = (a: TProduct, b: TProduct): number => {
   const startDateA = Date.parse(a.end_date);
   const startDateB = Date.parse(b.end_date);
   return startDateA - startDateB;
@@ -61,4 +61,20 @@ export const getProductsPerPage = (arr: TProduct[], productsPerPage: number) => 
     chunks.push(arr.slice(i, i + productsPerPage));
   }
   return chunks;
+};
+
+export const getSortedProducts = (products: TProduct[], sortParam: string, isAscSort: boolean) => {
+  const sortedProducts: TProduct[] = [...products];
+
+  if (sortParam === 'name') {
+    sortedProducts.sort((a: TProduct, b: TProduct) => compareNames(a, b));
+  } else if (sortParam === 'views') {
+    sortedProducts.sort((a: TProduct, b: TProduct) => compareViews(a, b));
+  } else if (sortParam === 'start date') {
+    sortedProducts.sort((a: TProduct, b: TProduct) => compareStartDate(a, b));
+  } else if (sortParam === 'end date') {
+    sortedProducts.sort((a: TProduct, b: TProduct) => compareEndDate(a, b));
+  }
+
+  return isAscSort ? sortedProducts : sortedProducts.reverse();
 };

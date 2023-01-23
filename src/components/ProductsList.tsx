@@ -1,51 +1,32 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  compareEndDate,
-  compareNames,
-  compareStartDate,
-  compareViews,
-  getProductsPerPage, // todo убрать это чтоб не захламлять код
-} from './utils';
+import { getProductsPerPage, getSortedProducts } from './utils';
 import { fetchProducts } from 'redux/slices/productsSlice';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state: any) => state.products.items);
-  const { isAscSort, sortParam } = useSelector((state: any) => state.filters);
+  const { ascSort, sortParam } = useSelector((state: any) => state.filters);
   const { currentPage, productsPerPage } = useSelector((state: any) => state.pagination);
 
+  const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
+
   const getProducts = async () => {
-    dispatch(fetchProducts());
-    window.scrollTo(0, 0);
+    await dispatch(fetchProducts());
   };
 
   useEffect(() => {
     getProducts();
-  }, [isAscSort, sortParam, currentPage, productsPerPage]);
+  }, []);
 
-  let visibleProducts: TProduct[] = [...products];
-
-  // console.log(visibleProducts);
-
-  // if (sortParam.sortProperty === 'name') {
-  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareNames(a, b))];
-  // } else if (sortParam.sortProperty === 'views') {
-  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareViews(a, b))];
-  // } else if (sortParam.sortProperty === 'start date') {
-  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareStartDate(a, b))];
-  // } else if (sortParam.sortProperty === 'end date') {
-  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareEndDate(a, b))];
-  // }
-
-  // if (!isAscSort) {
-  //   visibleProducts.reverse();
-  // }
-
-  visibleProducts = getProductsPerPage(visibleProducts, productsPerPage)[currentPage - 1];
+  useEffect(() => {
+    const filteredArray = getSortedProducts(products, sortParam.sortProperty, ascSort);
+    const paginatedArray = getProductsPerPage(filteredArray, productsPerPage)[currentPage - 1];
+    setVisibleProducts(paginatedArray);
+  }, [products, sortParam, ascSort, currentPage]);
 
   return (
     <>
