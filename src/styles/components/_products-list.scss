@@ -16,6 +16,13 @@
       }
     }
   }
+
+  &__placeholder {
+    @include flex(center, center);
+    @include font(20px, 24px, 500);
+    padding: 20px;
+    color: $text-light;
+  }
 }
 
 .col {

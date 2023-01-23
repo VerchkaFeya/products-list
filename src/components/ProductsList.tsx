@@ -4,6 +4,7 @@ import { Product } from './Product';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductsPerPage, getSortedProducts, getSearchFilteredProducts } from './utils';
 import { fetchProducts } from 'redux/slices/productsSlice';
+import { setPagesAmount } from 'redux/slices/paginationSlice';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
@@ -25,9 +26,15 @@ export const ProductsList = () => {
   useEffect(() => {
     const searchFilteredArray = getSearchFilteredProducts(searchValue, products);
     const filteredArray = getSortedProducts(searchFilteredArray, sortParam.sortProperty, ascSort);
+    if (filteredArray) {
+      const pagesAmount = Math.ceil(filteredArray.length / productsPerPage);
+      dispatch(setPagesAmount(pagesAmount === 0 ? 1 : pagesAmount));
+    }
     const paginatedArray = getProductsPerPage(filteredArray, productsPerPage)[currentPage - 1];
     setVisibleProducts(paginatedArray);
-  }, [products, sortParam, ascSort, currentPage, searchValue]);
+  }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage]);
+
+  console.log(visibleProducts);
 
   return (
     <>
@@ -40,9 +47,17 @@ export const ProductsList = () => {
           <div className="products-list__header-item col col_5">Конец ротации</div>
         </div>
         <div className="products-list__body">
-          {visibleProducts?.map((item: TProduct) => {
-            return <Product key={item.name} product={item} />;
-          })}
+          {!visibleProducts?.length ? (
+            <div className="products-list__placeholder">
+              Извините, по вашему запросу ничего не найдено
+            </div>
+          ) : (
+            <>
+              {visibleProducts?.map((item: TProduct) => {
+                return <Product key={item.name} product={item} />;
+              })}
+            </>
+          )}
         </div>
       </div>
     </>

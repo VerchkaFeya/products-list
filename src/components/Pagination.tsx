@@ -1,11 +1,16 @@
 import { ArrowPagination } from 'assets/svg';
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextPage, prevPage, changePage } from 'redux/slices/paginationSlice';
+import { nextPage, prevPage, changePage, setProductsPerPage } from 'redux/slices/paginationSlice';
 
 export const Pagination = () => {
-  const currentPage = useSelector((state: any) => state.pagination.currentPage);
-  const pagesAmount = useSelector((state: any) => state.pagination.pagesAmount);
+  const [popupOpen, setPopupOpen] = useState(false);
+
+  const amountOptions = [3, 5, 10, 20, 50];
+
+  const { currentPage, pagesAmount, productsPerPage } = useSelector(
+    (state: any) => state.pagination,
+  );
   const dispatch = useDispatch();
 
   const nextPageHandler = () => {
@@ -18,6 +23,11 @@ export const Pagination = () => {
 
   const changePageHandler = (i: number) => {
     dispatch(changePage(i));
+  };
+
+  const handleAmountOptionClick = (amount: number) => {
+    setPopupOpen(false);
+    dispatch(setProductsPerPage(amount));
   };
 
   const pagesArr = [...new Array(pagesAmount)];
@@ -46,6 +56,26 @@ export const Pagination = () => {
         }`}
         onClick={nextPageHandler}>
         <ArrowPagination />
+      </div>
+      <div className="pagination__show-by-amount">
+        <span>Показывать по:</span>
+        <span className="pagination__amount" onClick={() => setPopupOpen(true)}>
+          {productsPerPage} шт
+        </span>
+        <span className={`pagination__amount-arrow ${popupOpen ? 'open' : ''}`}>
+          <ArrowPagination />
+        </span>
+        {popupOpen && (
+          <div className="pagination__amount-popup">
+            <ul className="pagination__amount-list">
+              {amountOptions.map((item, index) => (
+                <li key={index} onClick={() => handleAmountOptionClick(item)}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
