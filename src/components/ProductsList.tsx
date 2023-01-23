@@ -1,51 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   compareEndDate,
   compareNames,
   compareStartDate,
   compareViews,
-  getProductsPerPage,
+  getProductsPerPage, // todo убрать это чтоб не захламлять код
 } from './utils';
+import { fetchProducts } from 'redux/slices/productsSlice';
 
 export const ProductsList = () => {
-  // TODO get products filterType from redux
-  // TODO get products searchValue from redux
+  const dispatch = useDispatch();
 
-  const [products, setProducts] = useState([]);
+  const products = useSelector((state: any) => state.products.items);
+  const { isAscSort, sortParam } = useSelector((state: any) => state.filters);
+  const { currentPage, productsPerPage } = useSelector((state: any) => state.pagination);
+
+  const getProducts = async () => {
+    dispatch(fetchProducts());
+    window.scrollTo(0, 0);
+  };
 
   useEffect(() => {
-    fetch('https://files.rerotor.ru/rerotor/products.json')
-      .then((res) => res.json())
-      .then((res) => setProducts(res));
-  }, []);
+    getProducts();
+  }, [isAscSort, sortParam, currentPage, productsPerPage]);
 
-  const isAscSort = useSelector((state: any) => state.filters.ascSort);
-  const sortParam = useSelector((state: any) => state.filters.sortParam);
-  const currentPage = useSelector((state: any) => state.pagination.currentPage);
-  const productsPerPage = useSelector((state: any) => state.pagination.productsPerPage);
+  let visibleProducts: TProduct[] = [...products];
 
-  let visibleProducts: TProduct[] = [];
+  // console.log(visibleProducts);
 
-  if (sortParam.sortProperty === 'name') {
-    visibleProducts = [...products.sort((a, b) => compareNames(a, b))];
-  } else if (sortParam.sortProperty === 'views') {
-    visibleProducts = [...products.sort((a, b) => compareViews(a, b))];
-  } else if (sortParam.sortProperty === 'start date') {
-    visibleProducts = [...products.sort((a, b) => compareStartDate(a, b))];
-  } else if (sortParam.sortProperty === 'end date') {
-    visibleProducts = [...products.sort((a, b) => compareEndDate(a, b))];
-  }
+  // if (sortParam.sortProperty === 'name') {
+  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareNames(a, b))];
+  // } else if (sortParam.sortProperty === 'views') {
+  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareViews(a, b))];
+  // } else if (sortParam.sortProperty === 'start date') {
+  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareStartDate(a, b))];
+  // } else if (sortParam.sortProperty === 'end date') {
+  //   visibleProducts = [...products.sort((a: TProduct, b: TProduct) => compareEndDate(a, b))];
+  // }
 
-  if (!isAscSort) {
-    visibleProducts.reverse();
-  }
+  // if (!isAscSort) {
+  //   visibleProducts.reverse();
+  // }
 
-  visibleProducts = getProductsPerPage(visibleProducts, productsPerPage, currentPage)[
-    currentPage - 1
-  ];
+  visibleProducts = getProductsPerPage(visibleProducts, productsPerPage)[currentPage - 1];
 
   return (
     <>

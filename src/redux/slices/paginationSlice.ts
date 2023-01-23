@@ -2,8 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentPage: 1,
-  productsPerPage: 5,
-  pagesAmount: 3, // получать из
+  productsPerPage: 5, // todo получать из ux
+  pagesAmount: 3, // TODO получать в зависимости от количества общего
 };
 
 export const paginationSlice = createSlice({

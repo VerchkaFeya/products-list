@@ -55,11 +55,7 @@ export const compareEndDate = (a: TProduct, b: TProduct): number => {
   return startDateA - startDateB;
 };
 
-export const getProductsPerPage = (
-  arr: TProduct[],
-  productsPerPage: number,
-  currentPage: number,
-) => {
+export const getProductsPerPage = (arr: TProduct[], productsPerPage: number) => {
   const chunks = [];
   for (let i = 0; i < arr.length; i += productsPerPage) {
     chunks.push(arr.slice(i, i + productsPerPage));
