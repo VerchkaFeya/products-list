@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearchValue } from 'redux/slices/filtersSlice';
 
 export const Search = () => {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState('');
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const lang = useSelector((state: any) => state.lang.lang);
 
   const clearInputHandler = () => {
     dispatch(setSearchValue(''));
@@ -25,7 +26,7 @@ export const Search = () => {
         ref={inputRef}
         value={inputValue}
         onChange={(e) => inputChangeHandler(e)}
-        placeholder="Поиск..."
+        placeholder={lang === 'ru' ? 'Поиск...' : 'Search...'}
         className="search__input"></input>
       {inputValue && <div className="search__reset" onClick={clearInputHandler}></div>}
     </div>

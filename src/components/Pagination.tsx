@@ -6,11 +6,11 @@ import { nextPage, prevPage, changePage, setProductsPerPage } from 'redux/slices
 export const Pagination = () => {
   const [popupOpen, setPopupOpen] = useState(false);
 
-  const amountOptions = [3, 5, 10, 20, 50];
-
   const { currentPage, pagesAmount, productsPerPage } = useSelector(
     (state: any) => state.pagination,
   );
+  const lang = useSelector((state: any) => state.lang.lang);
+
   const dispatch = useDispatch();
 
   const nextPageHandler = () => {
@@ -29,6 +29,8 @@ export const Pagination = () => {
     setPopupOpen(false);
     dispatch(setProductsPerPage(amount));
   };
+
+  const amountOptions = [3, 5, 10, 20, 50];
 
   const pagesArr = [...new Array(pagesAmount)];
 
@@ -58,9 +60,9 @@ export const Pagination = () => {
         <ArrowPagination />
       </div>
       <div className="pagination__show-by-amount">
-        <span>Показывать по:</span>
+        <span>{lang === 'ru' ? 'Показывать по:' : 'Show'}</span>
         <span className="pagination__amount" onClick={() => setPopupOpen(true)}>
-          {productsPerPage} шт
+          {`${productsPerPage} ${lang === 'ru' ? 'шт' : 'items'}`}
         </span>
         <span className={`pagination__amount-arrow ${popupOpen ? 'open' : ''}`}>
           <ArrowPagination />

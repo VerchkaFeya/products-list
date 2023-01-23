@@ -3,32 +3,36 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setAscSort, setSortParam } from 'redux/slices/filtersSlice';
 
 export const Sort = () => {
-  const isAscSort = useSelector((state: any) => state.filters.ascSort);
-  const sortParam = useSelector((state: any) => state.filters.sortParam);
+  const { ascSort, sortParam } = useSelector((state: any) => state.filters);
+  const lang = useSelector((state: any) => state.lang.lang);
   const dispatch = useDispatch();
 
   const sortParams = [
     {
       name: 'по названию',
+      nameEn: 'by name',
       sortProperty: 'name',
     },
     {
       name: 'по просмотрам',
+      nameEn: 'by views',
       sortProperty: 'views',
     },
     {
       name: 'по дате начала',
+      nameEn: 'by start date',
       sortProperty: 'start date',
     },
     {
       name: 'по дате окончания',
+      nameEn: 'by end date',
       sortProperty: 'end date',
     },
   ];
 
   const sortParamClickHandler = (name: string) => {
     if (name === sortParam.name) {
-      dispatch(setAscSort(!isAscSort));
+      dispatch(setAscSort(!ascSort));
     } else {
       dispatch(setAscSort(true));
     }
@@ -36,9 +40,9 @@ export const Sort = () => {
   };
 
   const getClassName = (name: string) => {
-    if (sortParam.name === name && isAscSort) {
+    if (sortParam.name === name && ascSort) {
       return 'sort__item_active asc';
-    } else if (sortParam.name === name && !isAscSort) {
+    } else if (sortParam.name === name && !ascSort) {
       return 'sort__item_active desc';
     } else {
       return '';
@@ -47,14 +51,14 @@ export const Sort = () => {
 
   return (
     <div className="sort">
-      <span>Сортировать:</span>
+      <span>{lang === 'ru' ? 'Сортировать' : 'Sort by'}:</span>
       {sortParams.map((param) => {
         return (
           <span
             className={`sort__item ${getClassName(param.name)}`}
             key={param.sortProperty}
             onClick={() => sortParamClickHandler(param.name)}>
-            {param.name}
+            {lang === 'ru' ? param.name : param.nameEn}
           </span>
         );
       })}

@@ -4,9 +4,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { ArrowGoBackBtn } from 'assets/svg';
+import { useSelector } from 'react-redux';
 
 export const CardPage = () => {
   const location = decodeURI(useLocation().pathname).slice(6);
+  const lang = useSelector((state: any) => state.lang.lang);
 
   const currentProductIndex = DATA.findIndex(
     (product) => product.name.trim().replace('/', '-') === location,
@@ -18,7 +20,7 @@ export const CardPage = () => {
         <div className="card-page__go-back">
           <Link to="/" className="card-page__go-back-link">
             <ArrowGoBackBtn />
-            <span> Назад</span>
+            <span>{lang === 'ru' ? ' Назад' : ' Go back'}</span>
           </Link>
         </div>
         <ProductCard product={DATA[currentProductIndex]} />

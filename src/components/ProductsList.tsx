@@ -12,6 +12,7 @@ export const ProductsList = () => {
   const products = useSelector((state: any) => state.products.items);
   const { ascSort, sortParam, searchValue } = useSelector((state: any) => state.filters);
   const { currentPage, productsPerPage } = useSelector((state: any) => state.pagination);
+  const lang = useSelector((state: any) => state.lang.lang);
 
   const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
 
@@ -34,7 +35,13 @@ export const ProductsList = () => {
     setVisibleProducts(paginatedArray);
   }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage]);
 
-  const headers = ['Фoто', 'Название', 'Просмотры', 'Начало ротации', 'Конец ротации'];
+  const headers = [
+    { nameRu: 'Фoто', nameEn: 'Photo' },
+    { nameRu: 'Название', nameEn: 'Name' },
+    { nameRu: 'Просмотры', nameEn: 'Views' },
+    { nameRu: 'Начало ротации', nameEn: 'Start date' },
+    { nameRu: 'Конец ротации', nameEn: 'End date' },
+  ];
 
   return (
     <>
@@ -43,7 +50,7 @@ export const ProductsList = () => {
           {headers.map((item, index) => {
             return (
               <div key={index} className={`products-list__header-item col col_${index + 1}`}>
-                {item}
+                {lang === 'ru' ? item.nameRu : item.nameEn}
               </div>
             );
           })}
