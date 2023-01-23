@@ -1,24 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProductsPerPage, getSortedProducts, getSearchFilteredProducts } from './utils';
+import { fetchProducts } from 'redux/slices/productsSlice';
 
 export const ProductsList = () => {
-  // TODO get products perPage from redux
-  // TODO get products currentPage from redux
+  const dispatch = useDispatch();
 
-  // TODO get products sortType from redux
-  // TODO get products filterType from redux
-  // TODO get products searchValue from redux
+  const products = useSelector((state: any) => state.products.items);
+  const { ascSort, sortParam, searchValue } = useSelector((state: any) => state.filters);
+  const { currentPage, productsPerPage } = useSelector((state: any) => state.pagination);
 
-  const [products, setProducts] = useState([]);
+  const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
+
+  const getProducts = async () => {
+    await dispatch(fetchProducts());
+  };
 
   useEffect(() => {
-    fetch('https://files.rerotor.ru/rerotor/products.json')
-      .then((res) => res.json())
-      .then((res) => setProducts(res));
+    getProducts();
   }, []);
 
-  console.log(products);
+  useEffect(() => {
+    const searchFilteredArray = getSearchFilteredProducts(searchValue, products);
+    const filteredArray = getSortedProducts(searchFilteredArray, sortParam.sortProperty, ascSort);
+    const paginatedArray = getProductsPerPage(filteredArray, productsPerPage)[currentPage - 1];
+    setVisibleProducts(paginatedArray);
+  }, [products, sortParam, ascSort, currentPage, searchValue]);
 
   return (
     <>
@@ -31,7 +40,7 @@ export const ProductsList = () => {
           <div className="products-list__header-item col col_5">Конец ротации</div>
         </div>
         <div className="products-list__body">
-          {products?.map((item: TProduct) => {
+          {visibleProducts?.map((item: TProduct) => {
             return <Product key={item.name} product={item} />;
           })}
         </div>
