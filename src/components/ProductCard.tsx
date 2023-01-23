@@ -13,11 +13,11 @@ export const ProductCard = ({ product }: TProductProps) => {
           <></>
         )}
         <div className="card__logo">
-          <img src={product.logo_url} alt="logo" />
+          <img src={product.logo_url} alt="logo" loading="lazy" />
         </div>
         <div className="card__content">
           <div className="card__image">
-            <img src={product.image_url} />
+            <img src={product.image_url} alt={product.name} loading="lazy" />
           </div>
           <div className="card__info">
             <h1 className="card__name">{product.name}</h1>

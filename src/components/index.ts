@@ -6,5 +6,16 @@ import { Search } from './Search';
 import { Pagination } from './Pagination';
 import { Categories } from './Categories';
 import { Languages } from './Languages';
+import { Spinner } from './Spinner';
 
-export { ProductsList, Product, Sort, ProductCard, Search, Pagination, Categories, Languages };
+export {
+  ProductsList,
+  Product,
+  Sort,
+  ProductCard,
+  Search,
+  Pagination,
+  Categories,
+  Languages,
+  Spinner,
+};

@@ -2,7 +2,7 @@ import React from 'react';
 import { Languages, Pagination, ProductsList, Search, Sort } from 'components';
 import { useSelector } from 'react-redux';
 
-export const ListPage = () => {
+const ListPage = () => {
   const lang = useSelector((state: any) => state.lang.lang);
   return (
     <div className="wrapper">
@@ -25,3 +25,5 @@ export const ListPage = () => {
     </div>
   );
 };
+
+export default ListPage;

@@ -6,7 +6,7 @@ import { useLocation } from 'react-router';
 import { ArrowGoBackBtn } from 'assets/svg';
 import { useSelector } from 'react-redux';
 
-export const CardPage = () => {
+const CardPage = () => {
   const location = decodeURI(useLocation().pathname).slice(6);
   const lang = useSelector((state: any) => state.lang.lang);
 
@@ -28,3 +28,5 @@ export const CardPage = () => {
     </div>
   );
 };
+
+export default CardPage;

@@ -7,7 +7,7 @@ export const Product = ({ product }: TProductProps) => {
   return (
     <div className="product">
       <div className="product__img col col_1">
-        <img src={product.image_url} alt="photo" className="product__image" />
+        <img src={product.image_url} alt="photo" className="product__image" loading="lazy" />
       </div>
       <div className="product__info col col_2">
         <Link className="product__link" to={`/card/${product.name.replace('/', '-')}`}>
