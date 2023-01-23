@@ -28,7 +28,6 @@ export const productsSlice: any = createSlice({
       state.items = action.payload;
       state.status = 'success';
     },
-
     [fetchProducts.rejected]: (state: any) => {
       state.status = 'error';
       state.items = [];

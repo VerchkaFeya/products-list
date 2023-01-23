@@ -34,17 +34,19 @@ export const ProductsList = () => {
     setVisibleProducts(paginatedArray);
   }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage]);
 
-  console.log(visibleProducts);
+  const headers = ['Фoто', 'Название', 'Просмотры', 'Начало ротации', 'Конец ротации'];
 
   return (
     <>
       <div className="products-list">
         <div className="products-list__header">
-          <div className="products-list__header-item col col_1">Фoто</div>
-          <div className="products-list__header-item col col_2">Название</div>
-          <div className="products-list__header-item col col_3">Просмотры</div>
-          <div className="products-list__header-item col col_4">Начало ротации</div>
-          <div className="products-list__header-item col col_5">Конец ротации</div>
+          {headers.map((item, index) => {
+            return (
+              <div key={index} className={`products-list__header-item col col_${index + 1}`}>
+                {item}
+              </div>
+            );
+          })}
         </div>
         <div className="products-list__body">
           {!visibleProducts?.length ? (

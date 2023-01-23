@@ -1,0 +1,20 @@
+.lang {
+  width: 100%;
+  text-align: right;
+  @include font(16px, 20px, 600);
+  color: $text-dark;
+
+  &__item {
+    color: $text-light;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &.active {
+      color: $text-darkest;
+    }
+
+    &:hover {
+      color: $text-darkest;
+    }
+  }
+}

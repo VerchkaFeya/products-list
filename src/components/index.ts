@@ -4,5 +4,7 @@ import { Sort } from './Sort';
 import { ProductCard } from './ProductCard';
 import { Search } from './Search';
 import { Pagination } from './Pagination';
+import { Categories } from './Categories';
+import { Languages } from './Languages';
 
-export { ProductsList, Product, Sort, ProductCard, Search, Pagination };
+export { ProductsList, Product, Sort, ProductCard, Search, Pagination, Categories, Languages };
