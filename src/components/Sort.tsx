@@ -51,7 +51,7 @@ export const Sort = () => {
 
   return (
     <div className="sort">
-      <span>{lang === 'ru' ? 'Сортировать' : 'Sort by'}:</span>
+      <span className="sort__text">{lang === 'ru' ? 'Сортировать' : 'Sort by'}:</span>
       {sortParams.map((param) => {
         return (
           <span

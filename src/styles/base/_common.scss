@@ -16,4 +16,7 @@ body {
   max-width: $wrapper-width;
   padding: $wrapper-side-paddings;
   margin: 0 auto;
+  @include media-mobile {
+    padding: 0 15px;
+  }
 }

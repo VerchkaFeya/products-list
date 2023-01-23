@@ -8,12 +8,16 @@
     @include media-small-desktop {
       padding: 20px 30px 30px 20px;
     }
+
+    @include media-mobile {
+      padding: 15px;
+    }
   }
 
   &__discount {
     position: absolute;
     top: 61px;
-    left: 80px;
+    left: 6.5%;
     right: 0;
     bottom: 0;
     width: 100px;
@@ -24,6 +28,12 @@
     background-image: url(../../assets/svg/badge-arrow.svg);
     background-repeat: no-repeat;
     @include font(22px, 27px, 600);
+    transform-origin: left;
+
+    @include media-small-desktop {
+      top: 40px;
+      transform: scale(0.8);
+    }
   }
 
   &__logo {
@@ -52,14 +62,26 @@
     height: 415px;
     flex: 1 0 auto;
 
+    @include media-mobile {
+      width: 30%;
+    }
+
     img {
       width: 100%;
       height: 100%;
       object-fit: contain;
+
+      @include media-mobile {
+        object-position: 50% 15%;
+      }
     }
   }
   &__info {
     margin: 0 0 0 7.3%;
+
+    @include media-mobile {
+      margin: 0;
+    }
   }
 
   &__name {
@@ -70,6 +92,11 @@
     @include media-small-desktop {
       @include font(24px, 120%, 600);
     }
+
+    @include media-mobile {
+      @include font(16px, 120%, 600);
+      width: 180px;
+    }
   }
 
   &__stars {
@@ -78,7 +105,11 @@
 
     @include media-small-desktop {
       @include flex(flex-start, center);
-      margin: 30px 0 30px 0;
+      margin: 30px 0;
+    }
+
+    @include media-mobile {
+      margin: 15px 0;
     }
   }
 

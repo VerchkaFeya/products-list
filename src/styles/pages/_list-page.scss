@@ -12,10 +12,20 @@
   &__controls {
     margin: 24px 0 16px 0;
     @include flex(space-between, center);
+
+    @include media-mobile {
+      flex-wrap: wrap;
+    }
   }
 
   &__search {
     width: 320px;
+
+    @include media-mobile {
+      flex: 1 1 100%;
+      order: -1;
+      margin: 15px 0;
+    }
   }
 
   &__pagination {

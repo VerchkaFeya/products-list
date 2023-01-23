@@ -18,6 +18,10 @@
     -khtml-user-select: none;
     user-select: none;
 
+    @include media-mobile {
+      margin-left: 5px;
+    }
+
     &:hover {
       background-color: $colored-bg;
     }
