@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProductsPerPage, getSortedProducts } from './utils';
+import { getProductsPerPage, getSortedProducts, getSearchFilteredProducts } from './utils';
 import { fetchProducts } from 'redux/slices/productsSlice';
 
 export const ProductsList = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state: any) => state.products.items);
-  const { ascSort, sortParam } = useSelector((state: any) => state.filters);
+  const { ascSort, sortParam, searchValue } = useSelector((state: any) => state.filters);
   const { currentPage, productsPerPage } = useSelector((state: any) => state.pagination);
 
   const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
@@ -23,10 +23,11 @@ export const ProductsList = () => {
   }, []);
 
   useEffect(() => {
-    const filteredArray = getSortedProducts(products, sortParam.sortProperty, ascSort);
+    const searchFilteredArray = getSearchFilteredProducts(searchValue, products);
+    const filteredArray = getSortedProducts(searchFilteredArray, sortParam.sortProperty, ascSort);
     const paginatedArray = getProductsPerPage(filteredArray, productsPerPage)[currentPage - 1];
     setVisibleProducts(paginatedArray);
-  }, [products, sortParam, ascSort, currentPage]);
+  }, [products, sortParam, ascSort, currentPage, searchValue]);
 
   return (
     <>

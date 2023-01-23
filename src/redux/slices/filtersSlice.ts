@@ -6,6 +6,7 @@ const initialState = {
     sortProperty: 'name',
   },
   ascSort: true,
+  searchValue: '',
 };
 
 const filtersSlice = createSlice({
@@ -18,9 +19,12 @@ const filtersSlice = createSlice({
     setAscSort: (state, action) => {
       state.ascSort = action.payload;
     },
+    setSearchValue: (state, action) => {
+      state.searchValue = action.payload;
+    },
   },
 });
 
-export const { setSortParam, setAscSort } = filtersSlice.actions;
+export const { setSortParam, setAscSort, setSearchValue } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

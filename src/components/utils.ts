@@ -78,3 +78,13 @@ export const getSortedProducts = (products: TProduct[], sortParam: string, isAsc
 
   return isAscSort ? sortedProducts : sortedProducts.reverse();
 };
+
+export const getSearchFilteredProducts = (searchValue: string, products: TProduct[]) => {
+  const value = searchValue.trim().toLowerCase().split(' ').join('');
+
+  return products.filter((item) => {
+    const productValue = item.name.trim().toLowerCase().split(' ').join('');
+    const categoryValue = item.category.trim().toLowerCase().split(' ').join('');
+    return productValue.includes(value) || categoryValue.includes(value);
+  });
+};

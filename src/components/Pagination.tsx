@@ -19,6 +19,7 @@ export const Pagination = () => {
   const changePageHandler = (i: number) => {
     dispatch(changePage(i));
   };
+
   const pagesArr = [...new Array(pagesAmount)];
 
   return (
