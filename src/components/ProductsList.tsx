@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'redux/store';
 import * as filterUtils from '../utils/filterProducts';
 
-import { setPagesAmount } from 'redux/pagination/slice';
+import { setPagesAmount, changePage } from 'redux/pagination/slice';
 import { fetchProducts } from 'redux/products/asyncActions';
 
 import { getLangSelector } from 'redux/lang/selectors';
@@ -18,7 +18,7 @@ export const ProductsList = () => {
 
   const products = useSelector(getProductsSelector);
   const { ascSort, sortParam, searchValue } = useSelector(getFilterSelector);
-  const { currentPage, productsPerPage } = useSelector(getPaginationSelector);
+  const { currentPage, productsPerPage, pagesAmount } = useSelector(getPaginationSelector);
   const lang = useSelector(getLangSelector);
 
   const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
@@ -39,12 +39,18 @@ export const ProductsList = () => {
       ascSort,
     );
     if (filteredArray) {
-      const pagesAmount = Math.ceil(filteredArray.length / productsPerPage);
-      dispatch(setPagesAmount(pagesAmount === 0 ? 1 : pagesAmount));
+      const pageAmount = Math.ceil(filteredArray.length / productsPerPage);
+      dispatch(setPagesAmount(pagesAmount === 0 ? 1 : pageAmount));
+
+      if (currentPage > pageAmount && filteredArray.length !== 0) {
+        dispatch(changePage(pageAmount));
+      }
     }
+
     const paginatedArray = filterUtils.getProductsPerPage(filteredArray, productsPerPage)[
       currentPage - 1
     ];
+
     setVisibleProducts(paginatedArray);
   }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage]);
 
