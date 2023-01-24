@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/tp-lab-test/static/css/main.dc81cc34.css",
+    "main.js": "/tp-lab-test/static/js/main.a2fa30c9.js",
+    "static/js/984.dd7075d4.chunk.js": "/tp-lab-test/static/js/984.dd7075d4.chunk.js",
+    "static/js/469.aec79153.chunk.js": "/tp-lab-test/static/js/469.aec79153.chunk.js",
+    "static/js/720.85855255.chunk.js": "/tp-lab-test/static/js/720.85855255.chunk.js",
+    "static/media/sort-asc.svg": "/tp-lab-test/static/media/sort-asc.c52ded1491fc74facdf5.svg",
+    "static/media/sort-desc.svg": "/tp-lab-test/static/media/sort-desc.0f6925e3da1a9e67c89e.svg",
+    "static/media/search-icon.svg": "/tp-lab-test/static/media/search-icon.819ed68a1da977f171e6.svg",
+    "static/media/star-outlined.svg": "/tp-lab-test/static/media/star-outlined.347bfea1741808bc75622efc31055fb7.svg",
+    "index.html": "/tp-lab-test/index.html",
+    "static/media/star-filled.svg": "/tp-lab-test/static/media/star-filled.7d39ae0ff730d06e8203945d60537126.svg",
+    "static/media/arrow-go-back-btn.svg": "/tp-lab-test/static/media/arrow-go-back-btn.0957309ac95b25ebfd1a152a4f7f23ff.svg",
+    "static/media/badge-arrow.svg": "/tp-lab-test/static/media/badge-arrow.921aba98217a5245ba97.svg",
+    "static/media/arrow-pagination.svg": "/tp-lab-test/static/media/arrow-pagination.c1f5a38a30f12ccdfa1da740b0e847cb.svg",
+    "main.dc81cc34.css.map": "/tp-lab-test/static/css/main.dc81cc34.css.map",
+    "main.a2fa30c9.js.map": "/tp-lab-test/static/js/main.a2fa30c9.js.map",
+    "984.dd7075d4.chunk.js.map": "/tp-lab-test/static/js/984.dd7075d4.chunk.js.map",
+    "469.aec79153.chunk.js.map": "/tp-lab-test/static/js/469.aec79153.chunk.js.map",
+    "720.85855255.chunk.js.map": "/tp-lab-test/static/js/720.85855255.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc81cc34.css",
+    "static/js/main.a2fa30c9.js"
+  ]
+}
