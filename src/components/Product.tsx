@@ -2,12 +2,23 @@ import React from 'react';
 import { TProductProps } from 'types';
 import { formatDate } from '../utils/formatData';
 import { Link } from 'react-router-dom';
+import { useInView } from 'react-intersection-observer';
 
 export const Product = ({ product }: TProductProps) => {
+  const { ref, inView } = useInView({
+    threshold: 1,
+    triggerOnce: true,
+  });
+
+  console.log(inView);
   return (
-    <div className="product">
+    <div ref={ref} className="product">
       <div className="product__img col col_1">
-        <img src={product.image_url} alt="photo" className="product__image" loading="lazy" />
+        {inView ? (
+          <img src={product.image_url} alt="photo" className="product__image" />
+        ) : (
+          <div className="product__image_skeleton"></div>
+        )}
       </div>
       <div className="product__info col col_2">
         <Link className="product__link" to={`/card/${product.name.replace('/', '-')}`}>
