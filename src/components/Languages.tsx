@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { setlang } from 'redux/slices/langSlice';
+import { setlang, getLangSelector } from 'redux/slices/langSlice';
 
 export const Languages = () => {
   const dispatch = useDispatch();
 
-  const lang = useSelector((state: any) => state.lang.lang);
+  const lang = useSelector(getLangSelector);
 
   const changeLang = (lang: string) => {
     dispatch(setlang(lang));
   };
 
+  console.log(lang);
   return (
     <div className="lang">
       <span

@@ -1,10 +1,17 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setAscSort, setSortParam } from 'redux/slices/filtersSlice';
+import { getFilterSelector, setAscSort, setSortParam } from 'redux/slices/filtersSlice';
+import { getLangSelector } from 'redux/slices/langSlice';
+
+type TSortParam = {
+  name: string;
+  sortProperty: string;
+  nameEn: string;
+};
 
 export const Sort = () => {
-  const { ascSort, sortParam } = useSelector((state: any) => state.filters);
-  const lang = useSelector((state: any) => state.lang.lang);
+  const { ascSort, sortParam } = useSelector(getFilterSelector);
+  const lang = useSelector(getLangSelector);
   const dispatch = useDispatch();
 
   const sortParams = [
@@ -36,7 +43,8 @@ export const Sort = () => {
     } else {
       dispatch(setAscSort(true));
     }
-    dispatch(setSortParam(sortParams.find((item) => item.name === name)));
+    const actualParam = sortParams.find((item: TSortParam) => item.name === name);
+    if (actualParam) dispatch(setSortParam(actualParam));
   };
 
   const getClassName = (name: string) => {

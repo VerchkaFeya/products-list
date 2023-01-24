@@ -1,9 +1,10 @@
 import React from 'react';
 import { Languages, Pagination, ProductsList, Search, Sort } from 'components';
 import { useSelector } from 'react-redux';
+import { getLangSelector } from 'redux/slices/langSlice';
 
 const ListPage = () => {
-  const lang = useSelector((state: any) => state.lang.lang);
+  const lang = useSelector(getLangSelector);
   return (
     <div className="wrapper">
       <div className="list-page__lang">

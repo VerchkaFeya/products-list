@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { ArrowGoBackBtn } from 'assets/svg';
 import { useSelector } from 'react-redux';
+import { getLangSelector } from 'redux/slices/langSlice';
 
 const CardPage = () => {
   const location = decodeURI(useLocation().pathname).slice(6);
-  const lang = useSelector((state: any) => state.lang.lang);
+  const lang = useSelector(getLangSelector);
 
   const currentProductIndex = DATA.findIndex(
     (product) => product.name.trim().replace('/', '-') === location,

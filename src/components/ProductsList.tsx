@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getProductsPerPage, getSortedProducts, getSearchFilteredProducts } from './utils';
-import { fetchProducts } from 'redux/slices/productsSlice';
-import { setPagesAmount } from 'redux/slices/paginationSlice';
+import { fetchProducts, getProductsSelector } from 'redux/slices/productsSlice';
+import { getPaginationSelector, setPagesAmount } from 'redux/slices/paginationSlice';
+import { getLangSelector } from 'redux/slices/langSlice';
+import { getFilterSelector } from 'redux/slices/filtersSlice';
+import { useAppDispatch } from 'redux/store';
 
 export const ProductsList = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const products = useSelector((state: any) => state.products.items);
-  const { ascSort, sortParam, searchValue } = useSelector((state: any) => state.filters);
-  const { currentPage, productsPerPage } = useSelector((state: any) => state.pagination);
-  const lang = useSelector((state: any) => state.lang.lang);
+  const products = useSelector(getProductsSelector);
+  const { ascSort, sortParam, searchValue } = useSelector(getFilterSelector);
+  const { currentPage, productsPerPage } = useSelector(getPaginationSelector);
+  const lang = useSelector(getLangSelector);
 
   const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
 

@@ -1,15 +1,20 @@
 import { ArrowPagination } from 'assets/svg';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { nextPage, prevPage, changePage, setProductsPerPage } from 'redux/slices/paginationSlice';
+import { getLangSelector } from 'redux/slices/langSlice';
+import {
+  nextPage,
+  prevPage,
+  changePage,
+  setProductsPerPage,
+  getPaginationSelector,
+} from 'redux/slices/paginationSlice';
 
 export const Pagination = () => {
   const [popupOpen, setPopupOpen] = useState(false);
 
-  const { currentPage, pagesAmount, productsPerPage } = useSelector(
-    (state: any) => state.pagination,
-  );
-  const lang = useSelector((state: any) => state.lang.lang);
+  const { currentPage, pagesAmount, productsPerPage } = useSelector(getPaginationSelector);
+  const lang = useSelector(getLangSelector);
 
   const dispatch = useDispatch();
 

@@ -1,6 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from 'redux/store';
 
-const initialState = {
+type TPaginationSliceState = {
+  currentPage: number;
+  productsPerPage: number;
+  pagesAmount: number;
+};
+
+const initialState: TPaginationSliceState = {
   currentPage: 1,
   productsPerPage: 5,
   pagesAmount: 3,
@@ -20,17 +27,19 @@ export const paginationSlice = createSlice({
         state.currentPage = state.currentPage - 1;
       }
     },
-    changePage: (state, action) => {
+    changePage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
-    setProductsPerPage: (state, action) => {
+    setProductsPerPage: (state, action: PayloadAction<number>) => {
       state.productsPerPage = action.payload;
     },
-    setPagesAmount: (state, action) => {
+    setPagesAmount: (state, action: PayloadAction<number>) => {
       state.pagesAmount = action.payload;
     },
   },
 });
+
+export const getPaginationSelector = (state: RootState) => state.pagination;
 
 export const { nextPage, prevPage, changePage, setProductsPerPage, setPagesAmount } =
   paginationSlice.actions;

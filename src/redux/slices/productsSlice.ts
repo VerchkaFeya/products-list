@@ -1,39 +1,47 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { TProduct } from 'types';
+import { RootState } from 'redux/store';
 
-export const fetchProducts: any = createAsyncThunk('products/fetchProducts', async () => {
-  const responce = await fetch('https://files.rerotor.ru/rerotor/products.json');
-  const json = await responce.json();
-  return json;
+export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
+  const response = await fetch('https://files.rerotor.ru/rerotor/products.json');
+  return (await response.json()) as TProduct[];
 });
 
-const initialState = {
+type TProductSliceState = {
+  items: TProduct[];
+  status: string;
+};
+
+const initialState: TProductSliceState = {
   items: [],
   status: '', // loading | success | error
 };
 
-export const productsSlice: any = createSlice({
+export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    setItems(state, action) {
+    setItems(state, action: PayloadAction<TProduct[]>) {
       state.items = action.payload;
     },
   },
-  extraReducers: {
-    [fetchProducts.pending]: (state: any) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchProducts.pending, (state) => {
       state.status = 'loading';
       state.items = [];
-    },
-    [fetchProducts.fulfilled]: (state: any, action: any) => {
+    });
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.items = action.payload;
       state.status = 'success';
-    },
-    [fetchProducts.rejected]: (state: any) => {
+    });
+    builder.addCase(fetchProducts.rejected, (state) => {
       state.status = 'error';
       state.items = [];
-    },
+    });
   },
 });
+
+export const getProductsSelector = (state: RootState) => state.products.items;
 
 export const { setItems } = productsSlice.actions;
 
