@@ -1,20 +1,11 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TProduct } from 'types';
-import { RootState } from 'redux/store';
-
-export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
-  const response = await fetch('https://files.rerotor.ru/rerotor/products.json');
-  return (await response.json()) as TProduct[];
-});
-
-type TProductSliceState = {
-  items: TProduct[];
-  status: string;
-};
+import { fetchProducts } from './asyncActions';
+import { TProductSliceState } from './types';
 
 const initialState: TProductSliceState = {
   items: [],
-  status: '', // loading | success | error
+  status: '', // TODO loading | success | error
 };
 
 export const productsSlice = createSlice({
@@ -40,8 +31,6 @@ export const productsSlice = createSlice({
     });
   },
 });
-
-export const getProductsSelector = (state: RootState) => state.products.items;
 
 export const { setItems } = productsSlice.actions;
 

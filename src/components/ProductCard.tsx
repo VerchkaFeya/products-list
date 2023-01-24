@@ -1,7 +1,7 @@
 import React from 'react';
 import { TProductProps } from 'types';
 import { Stars } from './Stars';
-import { getPriceDecimals, getPriceInteger } from './utils';
+import { getPriceDecimals, getPriceInteger } from '../utils/formatData';
 
 export const ProductCard = ({ product }: TProductProps) => {
   return (

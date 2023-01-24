@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'redux/store';
-
-type TLangSliceState = {
-  lang: string;
-};
+import { TLangSliceState } from './types';
 
 const initialState: TLangSliceState = {
   lang: 'ru',
@@ -18,8 +14,6 @@ const langSlice = createSlice({
     },
   },
 });
-
-export const getLangSelector = (state: RootState) => state.lang.lang;
 
 export const { setlang } = langSlice.actions;
 

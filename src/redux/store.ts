@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import paginationReducer from './slices/paginationSlice';
-import filtersReducer from './slices/filtersSlice';
-import productsReducer from './slices/productsSlice';
-import langReducer from './slices/langSlice';
+import paginationReducer from './pagination/slice';
+import filtersReducer from './filter/slice';
+import productsReducer from './products/slice';
+import langReducer from './lang/slice';
 import { useDispatch } from 'react-redux';
 
 export const store = configureStore({

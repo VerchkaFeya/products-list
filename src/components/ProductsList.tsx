@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { TProduct } from 'types';
 import { Product } from './Product';
 import { useSelector } from 'react-redux';
-import { getProductsPerPage, getSortedProducts, getSearchFilteredProducts } from './utils';
-import { fetchProducts, getProductsSelector } from 'redux/slices/productsSlice';
-import { getPaginationSelector, setPagesAmount } from 'redux/slices/paginationSlice';
-import { getLangSelector } from 'redux/slices/langSlice';
-import { getFilterSelector } from 'redux/slices/filtersSlice';
 import { useAppDispatch } from 'redux/store';
+import * as filterUtils from '../utils/filterProducts';
+
+import { setPagesAmount } from 'redux/pagination/slice';
+import { fetchProducts } from 'redux/products/asyncActions';
+
+import { getLangSelector } from 'redux/lang/selectors';
+import { getFilterSelector } from 'redux/filter/selectors';
+import { getPaginationSelector } from 'redux/pagination/selectors';
+import { getProductsSelector } from 'redux/products/selectors';
 
 export const ProductsList = () => {
   const dispatch = useAppDispatch();
@@ -28,13 +32,19 @@ export const ProductsList = () => {
   }, []);
 
   useEffect(() => {
-    const searchFilteredArray = getSearchFilteredProducts(searchValue, products);
-    const filteredArray = getSortedProducts(searchFilteredArray, sortParam.sortProperty, ascSort);
+    const searchFilteredArray = filterUtils.getSearchFilteredProducts(searchValue, products);
+    const filteredArray = filterUtils.getSortedProducts(
+      searchFilteredArray,
+      sortParam.sortProperty,
+      ascSort,
+    );
     if (filteredArray) {
       const pagesAmount = Math.ceil(filteredArray.length / productsPerPage);
       dispatch(setPagesAmount(pagesAmount === 0 ? 1 : pagesAmount));
     }
-    const paginatedArray = getProductsPerPage(filteredArray, productsPerPage)[currentPage - 1];
+    const paginatedArray = filterUtils.getProductsPerPage(filteredArray, productsPerPage)[
+      currentPage - 1
+    ];
     setVisibleProducts(paginatedArray);
   }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage]);
 

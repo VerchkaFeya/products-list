@@ -1,7 +1,7 @@
 import React from 'react';
 import { Pagination, ProductsList, Search, Sort } from 'components';
 import { useSelector } from 'react-redux';
-import { getLangSelector } from 'redux/slices/langSlice';
+import { getLangSelector } from 'redux/lang/selectors';
 
 const ListPage = () => {
   const lang = useSelector(getLangSelector);

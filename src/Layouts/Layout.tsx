@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router';
-import { Languages } from './Languages';
+import { Languages } from '../components/Languages';
 
 export const Layout = () => {
   const a = useLocation().pathname.trim().includes('card');

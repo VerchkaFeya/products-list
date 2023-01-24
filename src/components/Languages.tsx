@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setlang, getLangSelector } from 'redux/slices/langSlice';
+import { getLangSelector } from 'redux/lang/selectors';
+import { setlang } from 'redux/lang/slice';
 
 export const Languages = () => {
   const dispatch = useDispatch();

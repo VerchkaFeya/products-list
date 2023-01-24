@@ -1,6 +1,6 @@
 import React from 'react';
 import { TProductProps } from 'types';
-import { formatDate } from './utils';
+import { formatDate } from '../utils/formatData';
 import { Link } from 'react-router-dom';
 
 export const Product = ({ product }: TProductProps) => {

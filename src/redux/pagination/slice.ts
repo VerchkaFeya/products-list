@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from 'redux/store';
-
-type TPaginationSliceState = {
-  currentPage: number;
-  productsPerPage: number;
-  pagesAmount: number;
-};
+import { TPaginationSliceState } from './types';
 
 const initialState: TPaginationSliceState = {
   currentPage: 1,
@@ -38,8 +32,6 @@ export const paginationSlice = createSlice({
     },
   },
 });
-
-export const getPaginationSelector = (state: RootState) => state.pagination;
 
 export const { nextPage, prevPage, changePage, setProductsPerPage, setPagesAmount } =
   paginationSlice.actions;

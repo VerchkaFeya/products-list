@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFilterSelector, setAscSort, setSortParam } from 'redux/slices/filtersSlice';
-import { getLangSelector } from 'redux/slices/langSlice';
+import { getFilterSelector } from 'redux/filter/selectors';
+import { setAscSort, setSortParam } from 'redux/filter/slice';
+import { getLangSelector } from 'redux/lang/selectors';
 
 type TSortParam = {
   name: string;

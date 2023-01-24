@@ -7,7 +7,6 @@ import { Pagination } from './Pagination';
 import { Categories } from './Categories';
 import { Languages } from './Languages';
 import { Spinner } from './Spinner';
-import { Layout } from './Layout';
 
 export {
   ProductsList,
@@ -19,5 +18,4 @@ export {
   Categories,
   Languages,
   Spinner,
-  Layout,
 };

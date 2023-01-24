@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Layout, Spinner } from 'components';
+import { Spinner } from 'components';
+import { Layout } from 'Layouts/Layout';
 
 const LazyListPage = lazy(() => import('./pages/ListPage'));
 const LazyCardPage = lazy(() => import('./pages/CardPage'));

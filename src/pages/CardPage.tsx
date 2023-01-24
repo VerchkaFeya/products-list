@@ -1,17 +1,19 @@
 import { ProductCard } from 'components';
-import { DATA } from 'products-data';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { ArrowGoBackBtn } from 'assets/svg';
 import { useSelector } from 'react-redux';
-import { getLangSelector } from 'redux/slices/langSlice';
+import { getLangSelector } from 'redux/lang/selectors';
+import { getProductsSelector } from 'redux/products/selectors';
 
 const CardPage = () => {
   const location = decodeURI(useLocation().pathname).slice(6);
   const lang = useSelector(getLangSelector);
 
-  const currentProductIndex = DATA.findIndex(
+  const products = useSelector(getProductsSelector);
+
+  const currentProductIndex = products.findIndex(
     (product) => product.name.trim().replace('/', '-') === location,
   );
 
@@ -23,7 +25,7 @@ const CardPage = () => {
           <span>{lang === 'ru' ? ' Назад' : ' Go back'}</span>
         </Link>
       </div>
-      <ProductCard product={DATA[currentProductIndex]} />
+      <ProductCard product={products[currentProductIndex]} />
     </div>
   );
 };

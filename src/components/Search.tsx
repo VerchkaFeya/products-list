@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSearchValue } from 'redux/slices/filtersSlice';
-import { getLangSelector } from 'redux/slices/langSlice';
+import { setSearchValue } from 'redux/filter/slice';
+import { getLangSelector } from 'redux/lang/selectors';
 
 export const Search = () => {
   const dispatch = useDispatch();
