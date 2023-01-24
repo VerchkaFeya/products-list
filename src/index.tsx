@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/tp-lab-test">
+      <BrowserRouter>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
