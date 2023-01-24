@@ -11,7 +11,6 @@ export const Languages = () => {
     dispatch(setlang(lang));
   };
 
-  console.log(lang);
   return (
     <div className="lang">
       <span

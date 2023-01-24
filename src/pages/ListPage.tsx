@@ -1,15 +1,12 @@
 import React from 'react';
-import { Languages, Pagination, ProductsList, Search, Sort } from 'components';
+import { Pagination, ProductsList, Search, Sort } from 'components';
 import { useSelector } from 'react-redux';
 import { getLangSelector } from 'redux/slices/langSlice';
 
 const ListPage = () => {
   const lang = useSelector(getLangSelector);
   return (
-    <div className="wrapper">
-      <div className="list-page__lang">
-        <Languages />
-      </div>
+    <div className="list-page">
       <h1 className="list-page__title">{lang === 'ru' ? 'Карточки контента' : 'Cards'}</h1>
       <div className="list-page__controls">
         <Sort />

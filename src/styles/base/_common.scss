@@ -14,9 +14,16 @@ body {
 
 .wrapper {
   max-width: $wrapper-width;
+  height: 100%;
   padding: $wrapper-side-paddings;
   margin: 0 auto;
+
   @include media-mobile {
     padding: 0 15px;
   }
+}
+
+.header {
+  height: 100px;
+  @include flex(flex-end, flex-end);
 }

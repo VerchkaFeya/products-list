@@ -17,15 +17,13 @@ const CardPage = () => {
 
   return (
     <div className="card-page">
-      <div className="wrapper">
-        <div className="card-page__go-back">
-          <Link to="/" className="card-page__go-back-link">
-            <ArrowGoBackBtn />
-            <span>{lang === 'ru' ? ' Назад' : ' Go back'}</span>
-          </Link>
-        </div>
-        <ProductCard product={DATA[currentProductIndex]} />
+      <div className="card-page__go-back">
+        <Link to="/" className="card-page__go-back-link">
+          <ArrowGoBackBtn />
+          <span>{lang === 'ru' ? ' Назад' : ' Go back'}</span>
+        </Link>
       </div>
+      <ProductCard product={DATA[currentProductIndex]} />
     </div>
   );
 };

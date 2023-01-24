@@ -1,8 +1,4 @@
 .list-page {
-  &__lang {
-    margin: 100px 0 0 auto;
-    width: 80px;
-  }
   &__title {
     @include font(22px, 23px, 600);
     color: $text-darkest;

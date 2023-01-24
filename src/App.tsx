@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { Spinner } from 'components';
+import { Layout, Spinner } from 'components';
 
 const LazyListPage = lazy(() => import('./pages/ListPage'));
 const LazyCardPage = lazy(() => import('./pages/CardPage'));
@@ -11,9 +11,11 @@ function App() {
     <>
       <Suspense fallback={<Spinner />}>
         <Routes>
-          <Route path="/" element={<LazyListPage />} />
-          <Route path="card/:id" element={<LazyCardPage />} />
-          <Route path="*" element={<LazyNotFoundPage />} />
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<LazyListPage />} />
+            <Route path="card/:id" element={<LazyCardPage />} />
+            <Route path="*" element={<LazyNotFoundPage />} />
+          </Route>
         </Routes>
       </Suspense>
     </>
