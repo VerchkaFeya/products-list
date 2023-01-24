@@ -60,7 +60,6 @@
     margin: 0 0 0 20px;
 
     @include media-mobile {
-      // flex: 1 1 100%;
       margin: 10px 0;
     }
   }
@@ -85,7 +84,7 @@
 
   &__amount-popup {
     @include flex(center, center);
-    padding: 8px;
+    padding: 5px 5px 5px 8px;
     width: 40px;
     height: auto;
     border-radius: 5px;
@@ -97,7 +96,6 @@
       0px 2px 5px rgba(43, 45, 80, 0.08), 0px 0px 0px 1px rgba(43, 45, 80, 0.1);
 
     @include media-mobile {
-      // top: 0;
       left: 105px;
     }
   }
@@ -105,9 +103,13 @@
   &__amount-list {
     @include flex(center, flex-start, column);
     gap: 6px;
+    width: 100%;
 
     li {
       cursor: pointer;
+      width: 100%;
+      display: block;
+      padding: 2px;
 
       &:hover {
         color: $text-accent;

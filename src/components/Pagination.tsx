@@ -1,5 +1,5 @@
 import { ArrowPagination } from 'assets/svg';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLangSelector } from 'redux/slices/langSlice';
 import {
@@ -15,8 +15,9 @@ export const Pagination = () => {
 
   const { currentPage, pagesAmount, productsPerPage } = useSelector(getPaginationSelector);
   const lang = useSelector(getLangSelector);
-
   const dispatch = useDispatch();
+
+  const popupRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   const nextPageHandler = () => {
     dispatch(nextPage());
@@ -33,6 +34,23 @@ export const Pagination = () => {
   const handleAmountOptionClick = (amount: number) => {
     setPopupOpen(false);
     dispatch(setProductsPerPage(amount));
+  };
+
+  const popupHandler = () => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      if (!popupRef.current) return;
+      if (!popupRef.current.contains(e.target as HTMLDivElement)) {
+        setPopupOpen(false);
+      }
+    };
+
+    if (!popupOpen) {
+      setPopupOpen(true);
+      document.addEventListener('click', handleDocumentClick);
+    } else {
+      setPopupOpen(false);
+      document.removeEventListener('click', handleDocumentClick);
+    }
   };
 
   const amountOptions = [3, 5, 10, 20, 50];
@@ -66,7 +84,7 @@ export const Pagination = () => {
       </div>
       <div className="pagination__show-by-amount">
         <span>{lang === 'ru' ? 'Показывать по:' : 'Show'}</span>
-        <span className="pagination__amount" onClick={() => setPopupOpen(true)}>
+        <span className="pagination__amount" onClick={popupHandler} ref={popupRef}>
           {`${productsPerPage} ${lang === 'ru' ? 'шт' : 'items'}`}
         </span>
         <span className={`pagination__amount-arrow ${popupOpen ? 'open' : ''}`}>
