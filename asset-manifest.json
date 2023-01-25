@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/tp-lab-test/static/css/main.d1787452.css",
-    "main.js": "/tp-lab-test/static/js/main.460422cf.js",
-    "static/js/984.9326b4b3.chunk.js": "/tp-lab-test/static/js/984.9326b4b3.chunk.js",
+    "main.css": "/tp-lab-test/static/css/main.068e7373.css",
+    "main.js": "/tp-lab-test/static/js/main.64f33ca4.js",
+    "static/js/984.b1adb551.chunk.js": "/tp-lab-test/static/js/984.b1adb551.chunk.js",
     "static/js/469.40b9fcda.chunk.js": "/tp-lab-test/static/js/469.40b9fcda.chunk.js",
     "static/js/720.a02837b8.chunk.js": "/tp-lab-test/static/js/720.a02837b8.chunk.js",
     "static/media/sort-asc.svg": "/tp-lab-test/static/media/sort-asc.c52ded1491fc74facdf5.svg",
@@ -14,14 +14,14 @@
     "static/media/arrow-go-back-btn.svg": "/tp-lab-test/static/media/arrow-go-back-btn.0957309ac95b25ebfd1a152a4f7f23ff.svg",
     "static/media/badge-arrow.svg": "/tp-lab-test/static/media/badge-arrow.921aba98217a5245ba97.svg",
     "static/media/arrow-pagination.svg": "/tp-lab-test/static/media/arrow-pagination.c1f5a38a30f12ccdfa1da740b0e847cb.svg",
-    "main.d1787452.css.map": "/tp-lab-test/static/css/main.d1787452.css.map",
-    "main.460422cf.js.map": "/tp-lab-test/static/js/main.460422cf.js.map",
-    "984.9326b4b3.chunk.js.map": "/tp-lab-test/static/js/984.9326b4b3.chunk.js.map",
+    "main.068e7373.css.map": "/tp-lab-test/static/css/main.068e7373.css.map",
+    "main.64f33ca4.js.map": "/tp-lab-test/static/js/main.64f33ca4.js.map",
+    "984.b1adb551.chunk.js.map": "/tp-lab-test/static/js/984.b1adb551.chunk.js.map",
     "469.40b9fcda.chunk.js.map": "/tp-lab-test/static/js/469.40b9fcda.chunk.js.map",
     "720.a02837b8.chunk.js.map": "/tp-lab-test/static/js/720.a02837b8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d1787452.css",
-    "static/js/main.460422cf.js"
+    "static/css/main.068e7373.css",
+    "static/js/main.64f33ca4.js"
   ]
 }
