@@ -31,10 +31,7 @@
 
       &.asc {
         &::after {
-          display: inline-block;
-          content: '';
-          width: 17px;
-          height: 14px;
+          @include pseudo(17px, 14px, inline-block, static);
           margin: 0 0 0 2px;
           background-image: url(../../assets/svg/sort-asc.svg);
           background-repeat: no-repeat;
@@ -43,10 +40,7 @@
       }
       &.desc {
         &::after {
-          display: inline-block;
-          content: '';
-          width: 17px;
-          height: 14px;
+          @include pseudo(17px, 14px, inline-block, static);
           margin: 0 0 0 2px;
           background-image: url(../../assets/svg/sort-desc.svg);
           background-repeat: no-repeat;

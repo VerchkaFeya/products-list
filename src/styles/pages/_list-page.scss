@@ -35,11 +35,7 @@
     position: relative;
 
     &::after {
-      content: '';
-      display: block;
-      width: 20px;
-      height: 20px;
-      position: absolute;
+      @include pseudo(20px, 20px, block, absolute);
       top: 20%;
       left: 170px;
       background-image: url('../../assets/svg/arrow-pagination.svg');

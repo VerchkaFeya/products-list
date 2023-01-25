@@ -49,10 +49,7 @@
       text-align: left;
       margin: 15px 0 5px 0;
       &::before {
-        content: 'Просмотры: ';
-        display: inline-block;
-        width: auto;
-        height: 10px;
+        @include pseudo(auto, 10px, inline-block, static, 'Просмотры: ');
         margin: 0 10px 0 0;
       }
     }
@@ -64,10 +61,7 @@
     @include media-small-desktop {
       text-align: left;
       &::before {
-        content: 'Начало ротации: ';
-        display: inline-block;
-        width: auto;
-        height: 10px;
+        @include pseudo(auto, 10px, inline-block, static, 'Начало ротации: ');
         margin: 0 10px 0 0;
       }
     }
@@ -79,10 +73,7 @@
     @include media-small-desktop {
       text-align: left;
       &::before {
-        content: 'Конец ротации: ';
-        display: inline-block;
-        width: auto;
-        height: 10px;
+        @include pseudo(auto, 10px, inline-block, static, 'Конец ротации: ');
         margin: 0 10px 0 0;
       }
     }

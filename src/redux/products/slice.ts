@@ -24,8 +24,12 @@ export const productsSlice = createSlice({
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.items = action.payload;
 
-      const categories = new Set(state.items.map((item) => item.category));
-      state.categories = ['Все категории', ...Array.from(categories)];
+      if (state.items.length !== 0) {
+        const categories = new Set(state.items.map((item) => item.category));
+        state.categories = ['Все категории', ...Array.from(categories)];
+      } else {
+        state.categories = ['Все категории'];
+      }
     });
     builder.addCase(fetchProducts.rejected, (state) => {
       state.categories = [];

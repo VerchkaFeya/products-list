@@ -38,12 +38,8 @@
 
     &::after,
     &::before {
-      content: '';
-      width: 13px;
-      height: 2px;
+      @include pseudo(13px, 2px, block, absolute);
       background-color: $text-light;
-      position: absolute;
-      display: block;
       top: 50%;
       transform: translateY(-50%);
       transition: 0.3s;

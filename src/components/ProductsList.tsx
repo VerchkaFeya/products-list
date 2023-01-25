@@ -18,7 +18,7 @@ export const ProductsList = () => {
 
   const products = useSelector(getProductsSelector);
   const { ascSort, sortParam, searchValue, category } = useSelector(getFilterSelector);
-  const { currentPage, productsPerPage, pagesAmount } = useSelector(getPaginationSelector);
+  const { currentPage, productsPerPage } = useSelector(getPaginationSelector);
   const lang = useSelector(getLangSelector);
 
   const [visibleProducts, setVisibleProducts] = useState<TProduct[]>([]);
@@ -43,7 +43,7 @@ export const ProductsList = () => {
 
     if (filteredByCategoryArray) {
       const pageAmount = Math.ceil(filteredByCategoryArray.length / productsPerPage);
-      dispatch(setPagesAmount(pagesAmount === 0 ? 1 : pageAmount));
+      dispatch(setPagesAmount(pageAmount === 0 ? 1 : pageAmount));
 
       if (currentPage > pageAmount && filteredByCategoryArray.length !== 0) {
         dispatch(changePage(pageAmount));

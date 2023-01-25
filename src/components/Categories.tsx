@@ -16,11 +16,9 @@ export const Categories = () => {
     dispatch(setCategory(e.target.value));
   };
 
-  console.log(value);
-
   return (
     <select value={value} onChange={handleChange} className="categories">
-      {categories.map((category) => {
+      {categories?.map((category) => {
         return (
           <option key={`${category}`} value={`${category}`} className="categories__option">
             {category}
