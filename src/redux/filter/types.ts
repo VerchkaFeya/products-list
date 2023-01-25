@@ -8,4 +8,5 @@ export type TFilterSliceState = {
   sortParam: TSortParam;
   ascSort: boolean;
   searchValue: string;
+  category: string;
 };

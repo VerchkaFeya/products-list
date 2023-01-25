@@ -8,6 +8,7 @@
   &__controls {
     margin: 24px 0 16px 0;
     @include flex(space-between, center);
+    flex-wrap: wrap;
 
     @include media-mobile {
       flex-wrap: wrap;
@@ -26,5 +27,25 @@
 
   &__pagination {
     margin: 16px 0;
+  }
+
+  &__categories {
+    flex: 1 1 100%;
+    margin: 10px 0 5px 0;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 20%;
+      left: 170px;
+      background-image: url('../../assets/svg/arrow-pagination.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      transform: rotate(90deg) scale(0.75);
+    }
   }
 }

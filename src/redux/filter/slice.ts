@@ -9,6 +9,7 @@ const initialState: TFilterSliceState = {
   },
   ascSort: true,
   searchValue: '',
+  category: 'Все категории',
 };
 
 const filtersSlice = createSlice({
@@ -24,9 +25,12 @@ const filtersSlice = createSlice({
     setSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
     },
+    setCategory: (state, action: PayloadAction<string>) => {
+      state.category = action.payload;
+    },
   },
 });
 
-export const { setSortParam, setAscSort, setSearchValue } = filtersSlice.actions;
+export const { setSortParam, setAscSort, setSearchValue, setCategory } = filtersSlice.actions;
 
 export default filtersSlice.reducer;

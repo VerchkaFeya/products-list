@@ -17,7 +17,7 @@ export const ProductsList = () => {
   const dispatch = useAppDispatch();
 
   const products = useSelector(getProductsSelector);
-  const { ascSort, sortParam, searchValue } = useSelector(getFilterSelector);
+  const { ascSort, sortParam, searchValue, category } = useSelector(getFilterSelector);
   const { currentPage, productsPerPage, pagesAmount } = useSelector(getPaginationSelector);
   const lang = useSelector(getLangSelector);
 
@@ -38,21 +38,24 @@ export const ProductsList = () => {
       sortParam.sortProperty,
       ascSort,
     );
-    if (filteredArray) {
-      const pageAmount = Math.ceil(filteredArray.length / productsPerPage);
+
+    const filteredByCategoryArray = filterUtils.getProductsByCAtegory(filteredArray, category);
+
+    if (filteredByCategoryArray) {
+      const pageAmount = Math.ceil(filteredByCategoryArray.length / productsPerPage);
       dispatch(setPagesAmount(pagesAmount === 0 ? 1 : pageAmount));
 
-      if (currentPage > pageAmount && filteredArray.length !== 0) {
+      if (currentPage > pageAmount && filteredByCategoryArray.length !== 0) {
         dispatch(changePage(pageAmount));
       }
     }
 
-    const paginatedArray = filterUtils.getProductsPerPage(filteredArray, productsPerPage)[
+    const paginatedArray = filterUtils.getProductsPerPage(filteredByCategoryArray, productsPerPage)[
       currentPage - 1
     ];
 
     setVisibleProducts(paginatedArray);
-  }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage]);
+  }, [products, sortParam, ascSort, currentPage, searchValue, productsPerPage, category]);
 
   const headers = [
     { nameRu: 'Фoто', nameEn: 'Photo' },

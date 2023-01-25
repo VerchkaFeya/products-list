@@ -63,3 +63,9 @@ export const getSearchFilteredProducts = (searchValue: string, products: TProduc
     return productValue.includes(value) || categoryValue.includes(value);
   });
 };
+
+export const getProductsByCAtegory = (products: TProduct[], category: string) => {
+  return category === 'Все категории'
+    ? products
+    : products.filter((product) => product.category === category);
+};

@@ -1,0 +1,18 @@
+.categories {
+  width: 200px;
+  height: 36px;
+  border-radius: 7px;
+  padding: 0 0 0 10px;
+  border: 1px solid $border-color;
+  font-family: inherit;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  &__option {
+    margin: 3px 0;
+    &:checked {
+      background-color: $colored-bg;
+    }
+  }
+}

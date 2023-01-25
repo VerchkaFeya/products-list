@@ -10,7 +10,6 @@ export const Product = ({ product }: TProductProps) => {
     triggerOnce: true,
   });
 
-  console.log(inView);
   return (
     <div ref={ref} className="product">
       <div className="product__img col col_1">

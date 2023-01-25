@@ -5,7 +5,7 @@ import { TProductSliceState } from './types';
 
 const initialState: TProductSliceState = {
   items: [],
-  status: '', // TODO loading | success | error
+  categories: [],
 };
 
 export const productsSlice = createSlice({
@@ -18,15 +18,17 @@ export const productsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProducts.pending, (state) => {
-      state.status = 'loading';
+      state.categories = [];
       state.items = [];
     });
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.items = action.payload;
-      state.status = 'success';
+
+      const categories = new Set(state.items.map((item) => item.category));
+      state.categories = ['Все категории', ...Array.from(categories)];
     });
     builder.addCase(fetchProducts.rejected, (state) => {
-      state.status = 'error';
+      state.categories = [];
       state.items = [];
     });
   },
