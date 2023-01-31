@@ -1,4 +1,4 @@
-## Simple App
+## Простое приложение с отображением списка товаров
 
 Деплой: https://verchkafeya.github.io/tp-lab-test/
 
