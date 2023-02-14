@@ -1,6 +1,6 @@
 ## Простое приложение с отображением списка товаров
 
-Деплой: https://verchkafeya.github.io/tp-lab-test/
+Демо: https://verchkafeya.github.io/products-list
 
 Необходимо создать двухстраничное веб-приложение по [макету](https://www.figma.com/file/UPrQgRRFML8msDeFnyiXt4/Test-TPLab?node-id=0%3A1&t=r7VlKMWPANKa3O0G-0) в соответствии со следующими критериями:
 
